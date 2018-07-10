@@ -1,34 +1,22 @@
-    /**
-     * Upload the file sending it via Ajax at the Spring Boot server.
-     */
-    function uploadFile() {
-      $.ajax({
-        url: "/uploadFile",
-        type: "POST",
-        data: new FormData($("#upload-file-form")[0]),
-        enctype: 'multipart/form-data',
-        processData: false,
-        contentType: false,
-        cache: false,
-        success: function () {
-          // Handle upload success
-          $("#upload-file-message").text("File succesfully uploaded");
-        },
-        error: function () {
-          // Handle upload error
-          $("#upload-file-message").text(
-              "File not uploaded (perhaps it's too much big)");
-        }
-      });
-    } // function uploadFile
-    
+  //restful api can use it, now is removed from back end
     function getUserDetail() {
         $.ajax({
           url: "/user/khoubyari",
           type: "GET",
           cache: false,
           success: function (result) {
-        	alert("success");
+        	  var tbl=$("<table id='repoTable'><thead><tr><th>Reposotory</th><th>Pull Times</th>");
+        	  $("#div1").empty();
+        	  $("#div1").append(tbl);
+        	  for(var i=0;i<result.length;i++)
+        	  {
+        	      var tr="<tr>";
+        	      var name="<td>"+ "<a target='_blank' rel='noopener noreferrer' href='" + result[i]["html_url"] + "'>" + result[i]["name"]+"</a></td>";
+        	      var pullTims="<td>"+result[i]["pullTimes"]+"</td></tr>";
+        	      
+        	     $("#repoTable").append(tr+name+pullTims); 
+        	    
+        	  }
           },
           error: function () {
             // Handle upload error
