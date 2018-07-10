@@ -11,3 +11,7 @@ right click the Application.java and select
 After server started, just type the Url in the browser like 
 http://localhost:8080/user/eugenp
 it will show the result.
+
+
+for the configration of github.authentication in application.properties, please use the github base 64 to encode
+"username:password" and put your user name there. 
